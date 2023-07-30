@@ -1,5 +1,5 @@
 {% set name = "asio" %}
-{% set version = "1.28.0" %}
+{% set version = "1.28.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/chriskohlhoff/{{ name }}/archive/{{ name }}-{{ version.replace('.','-') }}.tar.gz
-  sha256: 226438b0798099ad2a202563a83571ce06dd13b570d8fded4840dbc1f97fa328
+  sha256: 5ff6111ec8cbe73a168d997c547f562713aa7bd004c5c02326f0e9d579a5f2ce
 
 build:
   number: 0
