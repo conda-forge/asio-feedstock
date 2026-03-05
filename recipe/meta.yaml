@@ -3,10 +3,10 @@
 
 package:
   name: {{ name|lower }}
-  version: {{ version }}
+  version: {{ version.replace('-','.') }}
 
 source:
-  url: https://github.com/chriskohlhoff/{{ name }}/archive/{{ name }}-{{ version.replace('.','-') }}.tar.gz
+  url: https://github.com/chriskohlhoff/{{ name }}/archive/{{ name }}-{{ version }}.tar.gz
   sha256: 0310a76b27e1854f09f696b30de57dc490b5e1b17faed1eb8c9a2891f956e52b
 
 build:
