@@ -1,13 +1,13 @@
 {% set name = "asio" %}
-{% set version = "1.29.0" %}
+{% set version = "1-36-0" %}
 
 package:
   name: {{ name|lower }}
-  version: {{ version }}
+  version: {{ version.replace('-','.') }}
 
 source:
-  url: https://github.com/chriskohlhoff/{{ name }}/archive/{{ name }}-{{ version.replace('.','-') }}.tar.gz
-  sha256: 44305859b4e6664dbbf853c1ef8ca0259d694f033753ae309fcb2534ca20f721
+  url: https://github.com/chriskohlhoff/{{ name }}/archive/{{ name }}-{{ version }}.tar.gz
+  sha256: 0310a76b27e1854f09f696b30de57dc490b5e1b17faed1eb8c9a2891f956e52b
 
 build:
   number: 0
@@ -15,6 +15,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - pkg-config
     - autoconf  # [unix]
