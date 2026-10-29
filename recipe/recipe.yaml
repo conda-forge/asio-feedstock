@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: asio
+  version: 1-38-2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version | replace('-','.') }}
+
+source:
+  url: https://github.com/chriskohlhoff/${{ name }}/archive/${{ name }}-${{ version }}.tar.gz
+  sha256: 9f2648fa483e58a6bf848d970ee0ea650ca19ed7769dfa520ed4f7b8d27af1db
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - pkg-config
+    - if: unix
+      then: autoconf
+    - if: unix
+      then: automake
+    - if: unix
+      then: make
+
+tests:
+  - script:
+      - if: unix
+        then: test -f $PREFIX/include/asio.hpp
+      - if: unix
+        then: test -f $PREFIX/include/asio/error.hpp
+      - if: win
+        then: if exist %PREFIX%\\Library\\include\\asio.hpp (exit 0) else (exit 1)
+      - if: win
+        then: if exist %PREFIX%\\Library\\include\\asio\\error.hpp (exit 0) else (exit 1)
+
+about:
+  license: BSL-1.0
+  license_file: asio/COPYING
+  summary: |
+    Asio is a cross-platform C++ library for network and low-level I/O programming that
+    provides developers with a consistent asynchronous model using a modern C++ approach.
+
+
+  homepage: https://github.com/chriskohlhoff/asio
+
+extra:
+  recipe-maintainers:
+    - seanyen
+    - traversaro
