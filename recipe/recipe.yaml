@@ -41,7 +41,9 @@ tests:
 
 about:
   license: BSL-1.0
-  license_file: asio/COPYING
+  license_file:
+    - COPYING
+    - LICENSE_1_0.txt
   summary: |
     Asio is a cross-platform C++ library for network and low-level I/O programming that
     provides developers with a consistent asynchronous model using a modern C++ approach.
