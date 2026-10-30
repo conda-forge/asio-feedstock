@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd asio
-
 ./autogen.sh
 ./configure --prefix=$PREFIX 
 
