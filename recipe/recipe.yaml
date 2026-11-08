@@ -1,8 +1,13 @@
+
+
+
+    
+  
 schema_version: 1
 
 context:
   name: asio
-  version: 1-38-2
+  version: "1-39-0"
 
 package:
   name: ${{ name|lower }}
@@ -10,34 +15,34 @@ package:
 
 source:
   url: https://github.com/chriskohlhoff/${{ name }}/archive/${{ name }}-${{ version }}.tar.gz
-  sha256: 9f2648fa483e58a6bf848d970ee0ea650ca19ed7769dfa520ed4f7b8d27af1db
+  sha256: cc27087fad4b6d85c6b8e4c896c57144b417cfc5a5eab9e204565f51adaec1de
 
 build:
   number: 0
+  noarch: generic
 
 requirements:
   build:
     - ${{ compiler('c') }}
     - ${{ stdlib("c") }}
     - ${{ compiler('cxx') }}
-    - pkg-config
+    - pkgconf
     - if: unix
       then: autoconf
     - if: unix
       then: automake
     - if: unix
       then: make
+  run:
+    - if: win
+      then: __win
+      else: __unix
 
 tests:
-  - script:
-      - if: unix
-        then: test -f $PREFIX/include/asio.hpp
-      - if: unix
-        then: test -f $PREFIX/include/asio/error.hpp
-      - if: win
-        then: if exist %PREFIX%\\Library\\include\\asio.hpp (exit 0) else (exit 1)
-      - if: win
-        then: if exist %PREFIX%\\Library\\include\\asio\\error.hpp (exit 0) else (exit 1)
+  - package_contents:
+      include:
+        - asio.hpp
+        - asio/error.hpp
 
 about:
   license: BSL-1.0
