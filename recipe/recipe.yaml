@@ -1,3 +1,8 @@
+
+
+
+    
+  
 schema_version: 1
 
 context:
@@ -14,6 +19,7 @@ source:
 
 build:
   number: 0
+  noarch: generic
 
 requirements:
   build:
@@ -27,17 +33,16 @@ requirements:
       then: automake
     - if: unix
       then: make
+  run:
+    - if: win
+      then: __win
+      else: __unix
 
 tests:
-  - script:
-      - if: unix
-        then: test -f $PREFIX/include/asio.hpp
-      - if: unix
-        then: test -f $PREFIX/include/asio/error.hpp
-      - if: win
-        then: if exist %PREFIX%\\Library\\include\\asio.hpp (exit 0) else (exit 1)
-      - if: win
-        then: if exist %PREFIX%\\Library\\include\\asio\\error.hpp (exit 0) else (exit 1)
+  - package_contents:
+      include:
+        - asio.hpp
+        - asio/error.hpp
 
 about:
   license: BSL-1.0
