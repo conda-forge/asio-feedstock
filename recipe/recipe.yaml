@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: asio
-  version: 1-38-2
+  version: "1-39-0"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/chriskohlhoff/${{ name }}/archive/${{ name }}-${{ version }}.tar.gz
-  sha256: 9f2648fa483e58a6bf848d970ee0ea650ca19ed7769dfa520ed4f7b8d27af1db
+  sha256: cc27087fad4b6d85c6b8e4c896c57144b417cfc5a5eab9e204565f51adaec1de
 
 build:
   number: 0
